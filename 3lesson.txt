@@ -1,0 +1,36 @@
+#1.Управление пользователем:  
+#a: создаём пользователя с использованием useradd: после с помощью cat просмотрим появился ли в папке /etc/shadow новый пользователь
+sudo useradd newuser1
+sudo cat /etc/shadow 
+
+#b: удаляем пользователя с использованием useradd:после с помощью cat просмотрим удалился ли в папке /etc/shadow новый пользователь
+sudo deluser newuser1
+Удаляется пользователь «newuser1» ...
+Предупреждение: в группе `newuser1' больше никого нет.
+Готово.
+sudo cat /etc/shadow 
+
+#c:создание пользователя в ручном режиме:
+sudo adduser -s /bin/bash -d /home/newuser1 -m newuser1
+
+#Управление группами: 
+#a) создать группу с использованием утилит и в ручном режиме:после с помощью cat просмотрим появился ли в папке /etc/group новая группа
+sudo addgroup newgroup
+sudo cat /etc/group
+
+#b,c) попрактиковаться в смене групп у пользователей добавить пользователя в группу, не меняя основной;:после с помощью cat просмотрим появился ли в папке /etc/group новая группа
+sudo useradd newuser1
+sudo usermod -aG newgroup newuser1
+sudo cat /etc/group
+
+#d) удалить пользователя из группы.
+sudo gpasswd -d newuser1 newgroup
+sudo deluser newuser1 newgroup
+
+#3.Добавить пользователя, имеющего право выполнять команды/действия от имени суперпользователя.  Сделать так, чтобы sudo не требовал пароль для выполнения команд:
+sudo usermod -aG sudo newuser1
+sudo cat /etc/group
+sudo nano /etc/sudoers.d/newuser1
+впечатываем: newuser1 ALL=(ALL) NOPASSWD:ALL и сохраняем файл
+chmod 644 /etc/sudoers.d/newuser1
+
