@@ -1,0 +1,120 @@
+# Задание 1:
+echo -e "\033[31mKTMAdventure">lesson.txt 
+cat lesson.txt
+---------------------------------------------
+[31mKTMAdventure
+---------------------------------------------
+echo -e "\033[31mKTMAdventure">>lesson.txt 
+pwd
+ls
+cat lesson.txt
+---------------------------------------------
+[31mKTMAdventure
+[31mKTMAdventure
+---------------------------------------------
+sudo cat /etc/* 2> /home/vbl/error.txt
+cat error.txt
+# Задание 2:
+cd ~
+ls -la | cut -b 1-11
+ls -la | cut -b 1-11 | sort -b
+ls -la | cut -b 1-11 | sort -b | uniq -d
+---------------------------------------------
+drwx------ 
+drwxr-xr-x 
+-rw------- 
+-rw-r--r-- 
+-rw-rw-r-- 
+---------------------------------------------
+# Задание 3:
+sudo nano /etc/ssh/sshd_config
+#PasswordAuthentication yes -> PasswordAuthentication no
+systemctl restart sshd
+sudo nano /etc/ssh/sshd_config
+PasswordAuthentication no-> #PasswordAuthentication yes
+systemctl reload sshd
+---------------------------------------------
+vbl@vbl-VirtualBox:~$ systemctl restart sshd
+vbl@vbl-VirtualBox:~$ systemctl status sshd
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: e>
+     Active: active (running) since Tue 2021-06-01 20:35:19 MSK; 1s ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 4482 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 4483 (sshd)
+      Tasks: 1 (limit: 12917)
+     Memory: 1.2M
+     CGroup: /system.slice/ssh.service
+             └─4483 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+
+июн 01 20:35:19 vbl-VirtualBox systemd[1]: ssh.service: Succeeded.
+июн 01 20:35:19 vbl-VirtualBox systemd[1]: Stopped OpenBSD Secure Shell server.
+июн 01 20:35:19 vbl-VirtualBox systemd[1]: Starting OpenBSD Secure Shell server>
+июн 01 20:35:19 vbl-VirtualBox sshd[4483]: Server listening on 0.0.0.0 port 22.
+июн 01 20:35:19 vbl-VirtualBox sshd[4483]: Server listening on :: port 22.
+июн 01 20:35:19 vbl-VirtualBox systemd[1]: Started OpenBSD Secure Shell server.
+vbl@vbl-VirtualBox:~$ sudo nano /etc/ssh/sshd_config
+[sudo] пароль для vbl: 
+vbl@vbl-VirtualBox:~$ systemctl status sshd
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: e>
+     Active: active (running) since Tue 2021-06-01 20:35:19 MSK; 1min 36s ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 4482 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 4483 (sshd)
+      Tasks: 1 (limit: 12917)
+     Memory: 1.2M
+     CGroup: /system.slice/ssh.service
+             └─4483 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+
+июн 01 20:35:19 vbl-VirtualBox systemd[1]: ssh.service: Succeeded.
+июн 01 20:35:19 vbl-VirtualBox systemd[1]: Stopped OpenBSD Secure Shell server.
+июн 01 20:35:19 vbl-VirtualBox systemd[1]: Starting OpenBSD Secure Shell server>
+июн 01 20:35:19 vbl-VirtualBox sshd[4483]: Server listening on 0.0.0.0 port 22.
+июн 01 20:35:19 vbl-VirtualBox sshd[4483]: Server listening on :: port 22.
+июн 01 20:35:19 vbl-VirtualBox systemd[1]: Started OpenBSD Secure Shell server.
+vbl@vbl-VirtualBox:~$ systemctl reload sshd
+vbl@vbl-VirtualBox:~$ systemctl status sshd
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: e>
+     Active: active (running) since Tue 2021-06-01 20:35:19 MSK; 1min 55s ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 4482 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+    Process: 4533 ExecReload=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+    Process: 4534 ExecReload=/bin/kill -HUP $MAINPID (code=exited, status=0/SUC>
+   Main PID: 4483 (sshd)
+      Tasks: 1 (limit: 12917)
+     Memory: 1.7M
+     CGroup: /system.slice/ssh.service
+             └─4483 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+
+июн 01 20:35:19 vbl-VirtualBox systemd[1]: Stopped OpenBSD Secure Shell server.
+июн 01 20:35:19 vbl-VirtualBox systemd[1]: Starting OpenBSD Secure Shell server>
+июн 01 20:35:19 vbl-VirtualBox sshd[4483]: Server listening on 0.0.0.0 port 22.
+июн 01 20:35:19 vbl-VirtualBox sshd[4483]: Server listening on :: port 22.
+июн 01 20:35:19 vbl-VirtualBox systemd[1]: Started OpenBSD Secure Shell server.
+июн 01 20:37:11 vbl-VirtualBox systemd[1]: Reloading OpenBSD Secure Shell serve>
+июн 01 20:37:12 vbl-VirtualBox sshd[4483]: Received SIGHUP; restarting.
+июн 01 20:37:12 vbl-VirtualBox systemd[1]: Reloaded OpenBSD Secure Shell server.
+июн 01 20:37:12 vbl-VirtualBox sshd[4483]: Server listening on 0.0.0.0 port 22.
+---------------------------------------------
+# Задание 4:
+mc
+---------------------------------------------
+root        2777  0.0  0.0  21024  4896 pts/0    S+   18:02   0:00 sudo mc
+root        2778  0.0  0.0  31328  9372 pts/0    S+   18:02   0:00 mc
+---------------------------------------------
+kill -9 2777
+kill -9 2778
+
+or
+
+mc
+pidof mc
+killall -s 9 mc
+
+
+
