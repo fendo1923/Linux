@@ -1,0 +1,86 @@
+#Запустить контейнер с Ubuntu.
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt update
+apt-cache policy docker-ce
+--------------------------
+docker-ce:
+  Установлен: (отсутствует)
+  Кандидат:   5:20.10.7~3-0~ubuntu-focal
+  Таблица версий:
+     5:20.10.7~3-0~ubuntu-focal 500
+--------------------------
+sudo apt install docker-ce -y
+systemctl status docker
+--------------------------
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor prese>
+     Active: active (running) since Sun 2021-06-20 17:19:47 MSK; 2min 59s ago
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 7285 (dockerd)
+      Tasks: 11
+     Memory: 42.7M
+     CGroup: /system.slice/docker.service
+             └─7285 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/
+--------------------------
+sudo docker run hello-world
+--------------------------
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+b8dfde127a29: Pull complete 
+Digest: sha256:9f6ad537c5132bcce57f7a0a20e317228d382c3cd61edae14650eec68b2b345c
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+--------------------------
+sudo docker run -d --name ubuntu -p 80:80 -v /var/www/html:/usr/share/ubuntu/html ubuntu
+--------------------------
+ml:/usr/share/ubuntu/html ubuntu
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+c549ccf8d472: Pull complete 
+Digest: sha256:aba80b77e27148d99c034a987e7da3a287ed455390352663418c0f2ed40417fe
+Status: Downloaded newer image for ubuntu:latest
+366f747d2e562c20f6a759c3ad8554312683844f3f65b6038bbb2c4f5bfc828b
+--------------------------
+sudo docker container ls -a
+--------------------------
+CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
+366f747d2e56   ubuntu        "bash"     2 minutes ago   Exited (0) 2 minutes ago             ubuntu
+4f818476c649   hello-world   "/hello"   4 minutes ago   Exited (0) 4 minutes ago             agitated_merkle
+--------------------------
+sudo docker run -d ubuntu
+--------------------------
+3b61d1d74d50b1f2ba7e2bef80619934da5c012b8bb95d51a42f594adc3b438e
+--------------------------
+sudo docker ps -a
+--------------------------
+CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
+3b61d1d74d50   ubuntu        "bash"     51 seconds ago   Exited (0) 50 seconds ago             quirky_stonebraker
+366f747d2e56   ubuntu        "bash"     11 minutes ago   Exited (0) 11 minutes ago             ubuntu
+4f818476c649   hello-world   "/hello"   13 minutes ago   Exited (0) 13 minutes ago             agitated_merkle
+--------------------------
+* Используя Dockerfile, собрать связку nginx + PHP-FPM в одном контейнере.
+
